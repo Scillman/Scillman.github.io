@@ -1,3 +1,7 @@
+/**
+ * #003399
+ * #FFCC00
+ */
 * {
     margin: 0;
     padding: 0;
@@ -22,4 +26,41 @@ article p a {
     color:#FFF;
     text-decoration: none;
     font-size: 30px;
+}
+
+td.top {
+    vertical-align: top;
+    padding-right: 8px;
+}
+
+ul {
+    margin: 0px 0px 0px 30px;
+}
+
+.note {
+    font-size: 8pt;
+}
+
+.content {
+    width: 600px;
+}
+
+.content-left {
+    float: left;
+    background: -webkit-linear-gradient(left,rgba(0,0,0,0.2),rgba(0,0,0,0.8)); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(left,rgba(0,0,0,0.2),rgba(0,0,0,0.8)); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(left,rgba(0,0,0,0.2),rgba(0,0,0,0.8)); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(left,rgba(0,0,0,0.2),rgba(0,0,0,0.8)); /* Standard syntax */
+    padding: 8px 8px 8px 100px;
+    text-align: right;
+}
+
+.content-right {
+    float: right;
+    background: -webkit-linear-gradient(right,rgba(0,0,0,0.2),rgba(0,0,0,0.8)); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(right,rgba(0,0,0,0.2),rgba(0,0,0,0.8)); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(right,rgba(0,0,0,0.2),rgba(0,0,0,0.8)); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(right,rgba(0,0,0,0.2),rgba(0,0,0,0.8)); /* Standard syntax */
+    padding: 8px 100px 8px 8px;
+    text-align: left;
 }

@@ -1,15 +1,26 @@
-/* Define backgrounds of divs */
-#aboutus {
-    background-image: url('../img/Parallax1.jpg');
+body {
+    background-image: url('../img/galaxy_13-wallpaper-1920x1200.jpg');
 }
 
-#mission {
-    background-image: url('../img/Parallax2.jpg');
+.boxed {
     -webkit-box-shadow:-20px 0 20px 5px rgba(0,0,0,0.7);
     -moz-box-shadow:-20px 0 20px 5px rgba(0,0,0,0.7);
     -ms-box-shadow:-20px 0 20px 5px rgba(0,0,0,0.7);
     -o-box-shadow:-20px 0 20px 5px rgba(0,0,0,0.7);
     box-shadow:-20px 0 20px 5px rgba(0,0,0,0.7);
+}
+
+/* Define backgrounds of divs */
+#aboutus {
+    background-image: url('../img/316584-alexfas01.jpg');
+}
+
+#mission {
+    background-image: url('../img/call-of-duty-4-gameplay-1080p.jpg');
+}
+
+#missionb {
+    background-image: url('../img/call-of-duty-4-modern-warfare-2582.jpg');
 }
 
 #galaxy {
@@ -18,4 +29,9 @@
 
 #void {
     background-image: url('../img/neon_void-wallpaper-5120x3200.jpg');
+}
+
+
+#campaign {
+    background-image: url('../img/286135-blackangel-flipped.jpg');
 }
