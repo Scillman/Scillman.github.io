@@ -2,3 +2,24 @@
     margin: 0;
     padding: 0;
 }
+
+html, body {
+    height: 100%;
+}
+
+/** format text **/
+article h1 {
+    font-size:40px;
+}
+
+article p {
+    line-height: 30px;
+    font-size: 20px;
+    margin-top: 15px;
+}
+
+article p a {
+    color:#FFF;
+    text-decoration: none;
+    font-size: 30px;
+}

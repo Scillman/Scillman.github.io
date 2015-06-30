@@ -1,0 +1,21 @@
+/* Define backgrounds of divs */
+#aboutus {
+    background-image: url('../img/Parallax1.jpg');
+}
+
+#mission {
+    background-image: url('../img/Parallax2.jpg');
+    -webkit-box-shadow:-20px 0 20px 5px rgba(0,0,0,0.7);
+    -moz-box-shadow:-20px 0 20px 5px rgba(0,0,0,0.7);
+    -ms-box-shadow:-20px 0 20px 5px rgba(0,0,0,0.7);
+    -o-box-shadow:-20px 0 20px 5px rgba(0,0,0,0.7);
+    box-shadow:-20px 0 20px 5px rgba(0,0,0,0.7);
+}
+
+#galaxy {
+    background-image: url('../img/galaxy_13-wallpaper-1920x1200.jpg');
+}
+
+#void {
+    background-image: url('../img/neon_void-wallpaper-5120x3200.jpg');
+}
