@@ -11,15 +11,23 @@ body {
 }
 
 /* Define backgrounds of divs */
-#aboutus {
+#about {
     background-image: url('../img/316584-alexfas01.jpg');
 }
 
-#mission {
+#campaign {
+    background-image: url('../img/286135-blackangel.jpg');
+}
+
+#multiplayer {
+    background-image: url('../img/14672_4bed75c813799.jpg');
+}
+
+#req-h {
     background-image: url('../img/call-of-duty-4-gameplay-1080p.jpg');
 }
 
-#missionb {
+#req-s {
     background-image: url('../img/call-of-duty-4-modern-warfare-2582.jpg');
 }
 
@@ -32,6 +40,3 @@ body {
 }
 
 
-#campaign {
-    background-image: url('../img/286135-blackangel-flipped.jpg');
-}
