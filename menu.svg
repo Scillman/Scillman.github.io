@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <svg width="256" height="256" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
-    <path stroke="none" fill="black"
+    <path stroke-width="16" stroke="black" fill="none"
         d="M28 128 L228 128 Z M28 100 L228 100 Z M28 156 L228 156 Z" />
 </svg>
