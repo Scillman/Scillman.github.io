@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<svg width="256" height="256" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="128" cy="128" r="8" fill="black" />
+    <circle cx="128" cy="128" r="120" stroke-width="8" stroke="black" fill="none" />
+    <path stroke-width="6" stroke="black" fill="none"
+        d="M 128 128 l 0 -80 Z" />
+    <path stroke-width="3" stroke="black" fill="none"
+        d="M 128 128 l 30 -30 Z" />
+    <path stroke-width="4" stroke="black" fill="none"
+        d="M 128 128 m 0 -120 l 0 30 Z M 128 128 m 120 0 l -30 0 Z M 128 128 m 0 120 l 0 -30 Z M 128 128 m -120 0 l 30 0 Z M 128 128 m 60 -103.923048 l -15 25.980762 Z M 128 128 m 103.923048 -60 l -25.980762 15 Z M 128 128 m 60 103.923048 l -15 -25.980762 Z M 128 128 m 103.923048 60 l -25.980762 -15 Z M 128 128 m -60 103.923048 l 15 -25.980762 Z M 128 128 m -103.923048 60 l 25.980762 -15 Z M 128 128 m -60 -103.923048 l 15 25.980762 Z M 128 128 m -103.923048 -60 l 25.980762 15 Z" />
+</svg>
