@@ -24,10 +24,25 @@
         l 32 0
         l 0 20
 
-        M 112 28
-        a 100 100 0 0 1 1 32 0
+
+        a 120 120 0 0 1 32 20
+
+        l 16 -24
+        l 16 24
+        l -16 16
+
+        a 120 120 0 0 1 20 32
         
+        l 16 0
+        l 0 32
+
         Z" />
+        <!--
+        
+        A rx ry x-axis-rotation large-arc-flag sweep-flag x y
+        a rx ry x-axis-rotation large-arc-flag sweep-flag dx dy
+        
+        -->
 
     <!-- https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Paths -->
     <circle cx="128" cy="128" r="4" fill="red" />
