@@ -1,0 +1,6 @@
+- name: Setting up the environment
+  link: setting-up-the-environment
+- name: Adding an item
+  link: adding-an-item
+- name: Adding a block
+  link: adding-a-block

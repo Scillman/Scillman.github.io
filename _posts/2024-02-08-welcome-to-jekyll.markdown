@@ -34,7 +34,7 @@ public class ModMain extends ModInitializer {
 }
 {% endhighlight %}
 
-{% highlight json %}
+{% highlight json linenos mark_lines="1 2" %}
 {
   "array": [
     {

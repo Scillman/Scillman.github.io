@@ -1,0 +1,17 @@
+---
+layout: tutorials
+permalink: /tutorials/
+title: Tutorials
+mcversion: 1.20.4
+---
+<h1>{{ page.title }}</h1>
+
+<ul>
+  {% for tutorial in site.data.tutorials %}
+  <div style="border: red solid 1px;">
+    <li>
+      <a href="/tutorials/{{ page.mcversion }}/{{ tutorial.link }}/">{{ tutorial.name }}</a>
+    </li>
+  </div>
+  {% endfor %}
+</ul>

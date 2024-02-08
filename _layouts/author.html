@@ -6,6 +6,8 @@ layout: default
 
 {{ content }}
 
+{% include sidenav.html %}
+
 <h2>Posts</h2>
 <ul>
   {% assign filtered_posts = site.posts | where: 'author', page.short_name %}

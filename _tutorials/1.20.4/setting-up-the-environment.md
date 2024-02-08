@@ -1,0 +1,9 @@
+---
+short_name: jill
+name: Jill Smith
+position: Chief Editor
+order: 0
+mcversion: "1.20.4"
+title: Setting up the environment
+---
+Setting up the environment {{ page.mcversion }}

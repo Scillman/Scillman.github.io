@@ -2,7 +2,8 @@
 short_name: jill
 name: Jill Smith
 position: Chief Editor
-tutorial: 0
+order: 0
+mcversion: "1.20.2"
 title: Setting up the environment
 ---
-Jill is an avid fruit grower based in the south of France.
+Setting up the environment {{ page.mcversion }}

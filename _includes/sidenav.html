@@ -1,0 +1,5 @@
+<nav>
+    {% for item in site.data.tutorials %}
+        <a href="/minecraft/{{ page.mcversion }}/{{ item.name }}/">{{ item.name }}</a>
+    {% endfor %}
+</nav>

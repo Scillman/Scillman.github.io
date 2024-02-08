@@ -55,22 +55,24 @@ kramdown:
 #   - vendor/cache/
 #   - vendor/gems/
 #   - vendor/ruby/
+exclude:
+  - dev/
 
 collections:
   posts:
     output: true
-    permalink: /:collection/:year/:month/:day/:title/
-  minecraft:
+    permalink: /:collection/:year/:month/:day/
+  tutorials:
     output: true
     permalink: /:collection/:path/
-    sort_by: tutorial
+    sort_by: order
 
 defaults:
   - scope:
       path: ""
-      type: "minecraft"
+      type: "tutorials"
     values:
-      layout: "author"
+      layout: "tutorial"
   - scope:
       path: ""
       type: "posts"
