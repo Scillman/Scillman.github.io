@@ -1,0 +1,8 @@
+title: Items
+content:
+  - name: Adding an item
+    link: adding-an-item
+  - name: Creating an ItemGroup
+    link: creating-an-itemgroup
+  - name: Adding a custom tooltip
+    link: adding-a-custom-tooltip
