@@ -5,7 +5,6 @@
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
         <style>
 * {
     margin: 0;
@@ -45,7 +44,7 @@ h2 {
 }
 
 .topnav {
-    background-color: #1c1b22;
+    background-color: #111;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -53,30 +52,30 @@ h2 {
 }
 
 .topnav-left {
-    /* background-color: #000; */
     display: flex;
     align-self: flex-start;
     flex-direction: row;
+    margin: auto 0 auto 8px;
+}
+
+.topnav-left span {
+    font-size: 24px;
+    cursor: pointer;
 }
 
 .topnav-center {
     display: flex;
     flex: 0 1 100px;
     align-items: center;
-    /* background-color: red; */
     flex-direction: row;
-    /* align-self: stretch; */
-    /* justify-content: flex-end; */
 }
 
 .topnav-right {
     display: flex;
     flex-direction: row;
-    /* align-self: flex-end; */
     align-items: center;
     justify-content: flex-end;
     min-width: 100px;
-    /* background-color: blue; */
 }
 
 .topnav a {
@@ -99,30 +98,30 @@ h2 {
     color: white;
 }
 
-/* .topnav-right {
-    float: right;
-} */
-
 .topnav .search-container {
-    /* float: right; */
     position: relative;
     display: inline-block;
 }
 
 .topnav input[type=text] {
     padding: 6px;
-    margin-top: 8px;
+    margin: 8px 0;
     font-size: 17px;
     border: none;
+    background-color: #ddd;
+}
+
+.topnav input[type=text]:focus-visible {
+    border-style: none;
+    border-radius: 0;
+    border: 0;
+    outline: none;
 }
 
 .topnav .search-container button {
-    /* float: right; */
     padding: 6px 10px;
-    margin-top: 8px;
-    margin-right: 16px;
+    margin: 8px 8px 8px 0;
     background: #ddd;
-    font-size: 17px;
     border: none;
     cursor: pointer;
 }
@@ -131,28 +130,6 @@ h2 {
     background: #ccc;
 }
 
-@media screen and (max-width: 600px) {
-    .topnav .search-container {
-        float: none;
-    }
-
-    .topnav a,
-    .topnav input[type=text],
-    .topnav .search-container button {
-        float: none;
-        display: block;
-        text-align: left;
-        width: 100%;
-        margin: 0;
-        padding: 14px;
-    }
-
-    .topnav input[type=text] {
-        border: 1px solid #ccc;
-    }
-}
-
-/* Dropdown Button */
 .version-dropdown-button {
     background-color: #d6d6d6;
     color: #000;
@@ -160,7 +137,6 @@ h2 {
     font-size: 1em;
     border: none;
     min-width: 80px;
-    /* height: 48px; */
   }
 
   #title {
@@ -176,53 +152,39 @@ h2 {
     flex-grow: 1;
   }
 
-  /* The container <div> - needed to position the dropdown content */
   .version-dropdown {
-    /* position: absolute; */
     display: flex;
-    /* overflow-y: visible; */
     align-self: flex-end;
     flex-direction: row;
-
-    /* float: right; */
   }
 
-  /* Dropdown Content (Hidden by Default) */
   .version-dropdown-content {
     display: none;
     position: absolute;
     background-color: #f1f1f1;
-    min-width: 80px;
+    width: 80px;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
   }
 
-  /* Links inside the dropdown */
   .version-dropdown-content a {
     color: black;
     padding: 12px 16px;
-    /* padding: 8px 8px; */
     text-decoration: none;
     display: block;
-    /* float: unset; */
+    text-align: center;
   }
 
-  /* Change color of dropdown links on hover */
   .version-dropdown-content a:hover {
     background-color: #ddd;
   }
 
-  /* Show the dropdown menu on hover */
   .version-dropdown:hover .version-dropdown-content {
     display: block;
   }
 
-  /* Change the background color of the dropdown button when the dropdown content is shown */
   .version-dropdown:hover .version-dropdown-button {
     background-color: #c4c4c4;
-    /* height: 48px; */
-    /* display: inline-block; */
-    /* padding: 12px 16px; */
   }
 
   #page-content {
@@ -243,21 +205,6 @@ h2 {
     padding-top: 60px;
 }
 
-/*
-.sidenav a {
-    padding: 8px 8px 8px 32px;
-    text-decoration: none;
-    font-size: 25px;
-    color: #818181;
-    display: block;
-    transition: 0.3s;
-}
-
-.sidenav a:hover {
-    color: #f1f1f1;
-}
-*/
-
 .sidenav .closebtn {
     padding: 8px 8px 8px 32px;
     text-decoration: none;
@@ -274,39 +221,29 @@ h2 {
     color: #f1f1f1;
 }
 
-@media screen and (max-height: 450px) {
-    .sidenav {
-        padding-top: 15px;
-    }
-
-    .sidenav a {
-        /* font-size: 18px; */
-    }
-}
-
 .sidenav > ul,
 .sidenav > * li {
     list-style-type: none;
 }
 
 .tutorial-level {
-    color: red;
+    color: #aaa;
     padding: 8px 8px 8px 16px;
     list-style-type: none;
 }
 
 .tutorial-chapter {
-    
     padding: 4px 8px 4px 16px;
     list-style-type: none;
 }
 
 .tutorial-chapter a {
-    color: green;
+    color: #aaa;
     text-decoration: none;
 }
 .tutorial-chapter a:hover {
     color: #ccc;
+    font-weight: 700;
 }
 
 .sidenav-top {
@@ -338,6 +275,66 @@ h2 {
 .sidenav-top li a:hover {
     background-color: #bbb;
     color: #000;
+}
+
+.search-button {
+    display: inline-block;
+    margin: auto;
+    width: 16px;
+    height: 16px;
+    padding: 0;
+}
+
+
+.search-v2 {
+    display: flex;
+    flex-direction: row;
+}
+
+.search-v2-input {
+    margin: 16px 0px;
+    padding: 0px 8px;
+    display: flex;
+    flex-grow: 1;
+    align-self: flex-start;
+    background-color: #ccc;
+    height: 32px;
+    font-size: 1em;
+}
+
+.search-v2-input input[type=text] {
+    outline: none;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    border-image-width: 0;
+    background-color: transparent;
+}
+.search-v2-input input[type=text]:focus-visible {
+    outline: none;
+}
+
+.search-v2-button {
+    display: flex;
+    flex-grow: 0;
+    align-self: flex-end;
+    background-color: red;
+    margin: 16px 16px 16px 8px;
+    width: 32px;
+    height: 32px;
+}
+
+.search-v2-button a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: #ccc;
+
+    background-image: url('/assets/images/icon_search.svg');
+}
+
+.search-v2-button a:hover {
+    background-color: #eee;
 }
 
         </style>
@@ -382,21 +379,15 @@ h2 {
         </div>
         <nav class="topnav">
             <div class="topnav-left">
-                <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+                <span onclick="openNav()">&#9776;</span>
             </div>
-            <!-- div class="topnav-center">
-                <a href="#" class="active">Home</a>
-                <a href="#">Tutorials</a>
-                <a href="#">About</a>
-            </div -->
             <div class="topnav-right">
-                <div class="search-container">
-                    <form action="/action_page.php">
-                        <input type="text" placeholder="Search.." name="search">
-                        <button type="submit"><i class="fa fa-search"></i></button>
-                    </form>
+                <div class="search-v2">
+                    <div class="search-v2-input">
+                        <input type="text" placeholder="Search..." id="search" />
+                    </div>
+                    <div class="search-v2-button"><a href="#"></a></div>
                 </div>
-
             </div>
         </nav>
         <div id="content">
@@ -407,11 +398,11 @@ h2 {
                 <div class="version-dropdown">
                     <button class="version-dropdown-button">1.20.4</button>
                     <div class="version-dropdown-content">
-                        <a href="#">1.20.4</a>
-                        <a href="#">1.20.2</a>
-                        <a href="#">1.20.1</a>
-                        <a href="#">1.19.4</a>
-                        <a href="#">1.19.3</a>
+                        <a href="#" title="Minecraft 1.20.3-1.20.4" alt="Minecraft 1.20.3-1.20.4">1.20.4</a>
+                        <a href="#" title="Minecraft 1.20.2" alt="Minecraft 1.20.2">1.20.2</a>
+                        <a href="#" title="Minecraft 1.20.1" alt="Minecraft 1.20.1">1.20.1</a>
+                        <a href="#" title="Minecraft 1.19.4" alt="Minecraft 1.19.4">1.19.4</a>
+                        <a href="#" title="Minecraft 1.19.3" alt="Minecraft 1.19.3">1.19.3</a>
                     </div>
                 </div>
             </div>

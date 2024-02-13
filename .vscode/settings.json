@@ -1,4 +1,4 @@
 {
-    "svg.preview.background": "white",
+    "svg.preview.background": "dark-transparent",
     "markdown.extension.preview.autoShowPreviewToSide": false
 }

@@ -1,0 +1,19 @@
+---
+layout: tutorials
+permalink: /tutorial/
+title: Tutorials
+mcversion: 1.20.4
+---
+<ul>
+  {% for itemGroup in site.data.tutorials %}
+  <div style="border: red solid 1px;">
+    <li>{{ itemGroup.group }}
+        <ul>
+            {% for item in itemGroup.content %}
+                <li><a href="/tutorial/{{ page.mcversion }}/{{ item.link }}/">{{ item.name }}</a></li>
+            {% endfor %}
+        </ul>
+    </li>
+  </div>
+  {% endfor %}
+</ul>

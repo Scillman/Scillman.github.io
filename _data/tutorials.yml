@@ -1,6 +1,18 @@
-- name: Setting up the environment
-  link: setting-up-the-environment
-- name: Adding an item
-  link: adding-an-item
-- name: Adding a block
-  link: adding-a-block
+- group: Basics
+  content:
+  - name: Setting up the environment
+    link: setting-up-the-environment
+  - name: Introduction to modding Minecraft
+    link: introduction-to-modding-minecraft
+- group: Items
+  content:
+  - name: Adding an item
+    link: adding-an-item
+  - name: Creating an ItemGroup
+    link: creating-an-itemgroup
+  - name: Adding a custom tooltip
+    link: adding-a-custom-tooltip
+- group: Blocks
+  content:
+  - name: Adding a block
+    link: adding-a-block

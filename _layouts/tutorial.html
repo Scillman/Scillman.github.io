@@ -1,22 +1,30 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <title>{{ page.title }}</title>
-        <link rel="stylesheet" href="/assets/css/styles.css" />
-    </head>
-    <body>
-        {% include navigation.html %}
-        {% include sidenav.html %}
+{% include html_header.html %}
+<!-- div id="page-content" -->
 
-        <p>
-          {{ page.date | date_to_string }}
-          {% assign tutorial = site.tutorials | first %}
-          {% if tutorial %}
-            - <a href="{{ tutorial.link }}">{{ tutorial.name }}</a>
-          {% endif %}
-        </p>
+<div id="title">
+  <h1>{{ page.title }}</h1>
+  <div class="version-dropdown">
+      <button class="version-dropdown-button">{{ page.mcversion }}</button>
+      <div class="version-dropdown-content">
+        <a href="#" title="Minecraft {{ page.mcversion }}">{{ page.mcversion }}</a>
+          {% for item in site.data.versioning %}
+            {% if item.version != page.mcversion %}
+              <a href="/tutorial/{{ item.version }}/{{ page.link }}/" title="Minecraft {{ item.version }}">{{ item.version }}</a>
+            {% endif %}
+          {% endfor %}
+      </div>
+  </div>
+</div>
 
-        {{ content }}
-    </body>
-</html>
+<p>
+  {{ page.date | date_to_string }}
+  {% assign tutorial = site.tutorials | first %}
+  {% if tutorial %}
+    - <a href="{{ tutorial.link }}">{{ tutorial.name }}</a>
+  {% endif %}
+</p>
+
+{{ content }}
+
+<!-- /div -->
+{% include html_footer.html %}

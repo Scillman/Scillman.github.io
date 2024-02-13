@@ -1,7 +1,0 @@
-order: 0
-title: Basics
-content:
-  - name: Setting up the environment
-    link: setting-up-the-environment
-  - name: Introduction to modding Minecraft
-    link: introduction-to-modding-minecraft

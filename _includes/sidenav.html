@@ -1,5 +1,25 @@
-<nav>
-    {% for item in site.data.tutorials %}
-        <a href="/minecraft/{{ page.mcversion }}/{{ item.name }}/">{{ item.name }}</a>
+{% if page.mcversion == "" or page.mcversion == nil or page.mcversion == blank %}
+    {% assign mcversion = "1.20.4" %}
+{% else %}
+    {% assign mcversion = page.mcversion %}
+{% endif %}
+<div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <ul class="sidenav-top">
+        <li><a href="/">Home</a></li>
+        <li><a href="/blog">Blog</a></li>
+        <li><a href="/about">About</a></li>
+    </ul>
+    <hr/>
+    {% for itemGroup in site.data.tutorials %}
+        <ul>
+            <li class="tutorial-level">{{ itemGroup.group }}
+                <ul>
+                    {% for item in itemGroup.content %}
+                    <li class="tutorial-chapter"><a href="/tutorial/{{ mcversion }}/{{ item.link }}/">{{ item.name }}</a></li>
+                    {% endfor %}
+                </ul>
+            </li>
+        </ul>
     {% endfor %}
-</nav>
+</div>

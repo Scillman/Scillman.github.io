@@ -64,7 +64,7 @@ collections:
     permalink: /:collection/:year/:month/:day/
   tutorials:
     output: true
-    permalink: /:collection/:path/
+    permalink: /tutorial/:path/
     sort_by: order
 
 defaults:
