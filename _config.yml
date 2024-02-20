@@ -26,7 +26,7 @@ url: http://scillman.github.io
 # Configuration
 lsi: false
 safe: true
-source: ./
+source: ./docs
 incremental: false
 highlighter: rouge
 gist:

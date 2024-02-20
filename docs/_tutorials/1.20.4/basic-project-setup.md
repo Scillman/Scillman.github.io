@@ -1,0 +1,85 @@
+---
+author: Scillman
+order: 1
+mcversion: "1.20.4"
+title: Basic Project Setup
+link: basic-project-setup
+date: 20240220
+---
+## Prerequisites
+- This tutorial assumes you have a fully functional development environment, including Gradle and Git.
+- Have basic knowledge of Java.
+
+## Introduction
+In this tutorial we will go over setting up a basic project for modding in Fabric for Minecraft. This tutorial is optional, as an example mod can be downloaded [here](https://fabricmc.net/develop/template/), however it is adviced to follow to get a better understanding of the basics.
+
+During this tutorial we will set up a basic project that does absolutely nothing but compile. To achieve this we will need the create the following files:
+* ``build.gradle``
+* ``gradle.properties``
+* ``settings.gradle``
+* ``src/main/resources/mymod.mod.json``
+* ``src/main/java/com/mymod/ModMain.java``
+
+## settings.gradle
+The ``settings.gradle`` file should reside in your project root directory. It contains the information necessary to run the ``build.gradle``. In the case of modding for Minecraft the most notable is the _Fabric_ repository. This is being added to allow the project to use the _Loom_ gradle plugin. The others being the standard repositories for plugins. Where ``gradlePluginPortal`` is the official Gradle repository, and ``mavenCentral`` the official Maven repository. You could add ``mavenLocal`` if you have your own compiled plugins that you wish to load. However this is not necessary for most modders.
+
+{% highlight gradle %}
+pluginManagement {
+    repositories {
+        maven {
+            name = 'Fabric'
+            url = 'https://maven.fabricmc.net/'
+        }
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+{% endhighlight %}
+
+## gradle.properties
+The ``gradle.properties`` contains the project specific settings. Every section of the file will be explained one after another from here on.
+
+### org.gradle
+{% highlight gradle %}
+org.gradle.jvmargs=-Xmx1G
+org.gradle.parallel=true
+{% endhighlight %}
+These two lines are directives to your Gradle. As you may already suspect it tells Gradle it is allowed to use up to one gigabyte of memory and is allowed to run tasks in parallel if possible. Be aware though. Increasing the memory usage does NOT result in a faster build process in almost all cases. As such unless there is a very good reason, keep the value as is. If you change it arbitrarily you will increase the memory usage while it will not use it, unnecessarily increasing the load on the developer's hardware.
+
+### Fabric Properties
+{% highlight gradle %}
+minecraft_version=1.20.4
+yarn_mappings=1.20.4+build.3
+loader_version=0.15.7
+{% endhighlight %}
+
+### Mod Properties
+{% highlight gradle %}
+mod_version=1.0.0
+maven_group=com.mymod
+archives_base_name=mymod
+{% endhighlight %}
+
+### Dependencies
+{% highlight gradle %}
+fabric_version=0.96.1+1.20.4
+fabric_versiononly=0.96.1
+{% endhighlight %}
+
+## TODO
+
+``net.fabricmc.api.ModInitializer``
+
+{% highlight java lineos %}
+package com.github.scillman.minecraft.tutorial;
+
+import net.fabricmc.api.ModInitializer;
+
+public class ModMain extends ModInitializer {
+
+    @Override
+    public void onInitialize() {
+        // Your code comes here...
+    }
+}
+{% endhighlight %}

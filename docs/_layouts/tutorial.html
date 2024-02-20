@@ -15,16 +15,16 @@
       </div>
   </div>
 </div>
+<div>Last updated: {{ page.date | date_to_long_string: "ordinal" }}</div>
 
 <p>
-  {{ page.date | date_to_string }}
   {% assign tutorial = site.tutorials | first %}
   {% if tutorial %}
     - <a href="{{ tutorial.link }}">{{ tutorial.name }}</a>
   {% endif %}
 </p>
 
-{{ content }}
+{{ content | markdownify }}
 
 <!-- /div -->
 {% include html_footer.html %}
