@@ -6,7 +6,6 @@
   <div class="version-dropdown">
       <button class="version-dropdown-button">{{ page.mcversion }}</button>
       <div class="version-dropdown-content">
-        <a href="#" title="Minecraft {{ page.mcversion }}">{{ page.mcversion }}</a>
           {% for item in site.data.versioning %}
             {% if item.version != page.mcversion %}
               <a href="/tutorial/{{ item.version }}/{{ page.link }}/" title="Minecraft {{ item.version }}">{{ item.version }}</a>

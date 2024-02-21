@@ -3,8 +3,8 @@
 {% else %}
     {% assign mcversion = page.mcversion %}
 {% endif %}
-<div id="mySidenav" class="sidenav">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+<div id="sidenav" class="sidenav">
+    <a href="javascript:void(0)" class="close" onclick="closeNav()">&times;</a>
     <ul class="sidenav-top">
         <li><a href="/">Home</a></li>
         <li><a href="/blog/">Blog</a></li>
@@ -12,7 +12,7 @@
     </ul>
     <hr/>
     {% for itemGroup in site.data.tutorials %}
-        <ul>
+        <ul class="sidenav-list">
             <li class="tutorial-level">{{ itemGroup.group }}
                 <ul>
                     {% for item in itemGroup.content %}
