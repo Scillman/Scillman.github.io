@@ -12,10 +12,11 @@ baseurl: /
 domain: scillman.github.io
 url: http://scillman.github.io
 # twitter_username: Scillman
-# github_username:  Scillman
+github_username: Scillman
 
 # Build settings
 #remote_theme: jekyll/minima
+theme: null
 #theme: minima
 #minima:
 #  skin: dark
@@ -33,7 +34,13 @@ gist:
   noscript: false
 kramdown:
   math_engine: mathjax
+  list_indent: 4
   syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    block:
+      line_numbers: true
+#    span:
+#      line_numbers: false
 
 
 # Exclude from processing.

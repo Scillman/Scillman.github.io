@@ -1,4 +1,6 @@
 {
     "svg.preview.background": "dark-transparent",
-    "markdown.extension.preview.autoShowPreviewToSide": false
+    "markdown.extension.preview.autoShowPreviewToSide": false,
+    "files.trimFinalNewlines": true,
+    "files.trimTrailingWhitespace": true
 }

@@ -23,7 +23,7 @@ During this tutorial we will set up a basic project that does absolutely nothing
 ## settings.gradle
 The ``settings.gradle`` file should reside in your project root directory. It contains the information necessary to run the ``build.gradle``. In the case of modding for Minecraft the most notable is the _Fabric_ repository. This is being added to allow the project to use the _Loom_ gradle plugin. The others being the standard repositories for plugins. Where ``gradlePluginPortal`` is the official Gradle repository, and ``mavenCentral`` the official Maven repository. You could add ``mavenLocal`` if you have your own compiled plugins that you wish to load. However this is not necessary for most modders.
 
-{% highlight gradle %}
+```gradle
 pluginManagement {
     repositories {
         maven {
@@ -34,7 +34,7 @@ pluginManagement {
         gradlePluginPortal()
     }
 }
-{% endhighlight %}
+```
 
 ## gradle.properties
 The ``gradle.properties`` contains the project specific settings. Every section of the file will be explained one after another from here on.
@@ -52,6 +52,8 @@ minecraft_version=1.20.4
 yarn_mappings=1.20.4+build.3
 loader_version=0.15.7
 {% endhighlight %}
+These are pretty straightforward ``minecraft_version`` is set to the Minecraft version you wish to mod for, in this case we are modding for ``1.20.4``.
+
 
 ### Mod Properties
 {% highlight gradle %}
@@ -70,7 +72,7 @@ fabric_versiononly=0.96.1
 
 ``net.fabricmc.api.ModInitializer``
 
-{% highlight java lineos %}
+```java
 package com.github.scillman.minecraft.tutorial;
 
 import net.fabricmc.api.ModInitializer;
@@ -82,4 +84,4 @@ public class ModMain extends ModInitializer {
         // Your code comes here...
     }
 }
-{% endhighlight %}
+```

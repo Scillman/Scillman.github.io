@@ -1,0 +1,121 @@
+.topnav {
+    background-color: #111;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    a {
+        float: left;
+        display: block;
+        color: black;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 17px;
+
+        &:hover {
+            background-color: #ddd;
+            color: black;
+        }
+    }
+
+    input[type=text] {
+        padding: 6px;
+        margin: 8px 0;
+        font-size: 17px;
+        border: none;
+        background-color: #ddd;
+
+        &:focus-visible {
+            border-style: none;
+            border-radius: 0;
+            border: 0;
+            outline: none;
+        }
+    }
+
+    .topnav-left {
+        display: flex;
+        align-self: flex-start;
+        flex-direction: row;
+        margin: auto 0 auto 8px;
+
+        .open-menu {
+            width: 32px;
+            height: 32px;
+            cursor: pointer;
+
+            path {
+                fill: none;
+                stroke: #818181;
+                stroke-width: 20px;
+                transition: .3s;
+            }
+
+            &:hover {
+                path {
+                    stroke: #f1f1f1;
+                }
+            }
+        }
+    }
+
+    .topnav-right {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-end;
+        min-width: 100px;
+
+        .search-input {
+            margin: 16px 0px;
+            padding: 0px 8px;
+            display: flex;
+            flex-grow: 1;
+            align-self: flex-start;
+            background-color: #ccc;
+            height: 32px;
+            font-size: 1em;
+
+            input[type=text] {
+                outline: none;
+                border: 0;
+                padding: 0;
+                margin: 0;
+                border-image-width: 0;
+                background-color: transparent;
+
+                &:focus-visible {
+                    outline: none;
+                }
+            }
+        }
+
+        .search-button {
+            display: flex;
+            flex-grow: 0;
+            align-self: flex-end;
+            background-color: red;
+            margin: 16px 16px 16px 8px;
+            width: 32px;
+            height: 32px;
+
+            a {
+                display: block;
+                width: 100%;
+                height: 100%;
+                background-color: #ccc;
+
+                background-image: url('/assets/images/icon_search.svg');
+                background-size: 80% 80%;
+                background-repeat: no-repeat;
+                background-position: center center;
+
+                &:hover {
+                    background-color: #eee;
+                }
+            }
+        }
+    }
+}

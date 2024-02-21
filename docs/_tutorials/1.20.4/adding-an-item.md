@@ -6,9 +6,7 @@ title: Adding an item
 link: adding-an-item
 date: 20240213
 ---
-
-
-{% highlight java lineos %}
+```java
 package com.github.scillman.minecraft.tutorial;
 
 import net.fabricmc.api.ModInitializer;
@@ -20,4 +18,4 @@ public class ModMain extends ModInitializer {
         // Your code comes here...
     }
 }
-{% endhighlight %}
+```
