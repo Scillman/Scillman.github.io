@@ -34,7 +34,7 @@ gist:
   noscript: false
 kramdown:
   math_engine: mathjax
-  list_indent: 4
+#  list_indent: 4
   syntax_highlighter: rouge
   syntax_highlighter_opts:
     block:

@@ -1,29 +1,19 @@
 {% include html_header.html %}
-<!-- div id="page-content" -->
-
-<div id="title">
-  <h1>{{ page.title }}</h1>
-  <div class="version-dropdown">
-      <button class="version-dropdown-button">{{ page.mcversion }}</button>
-      <div class="version-dropdown-content">
-          {% for item in site.data.versioning %}
-            {% if item.version != page.mcversion %}
-              <a href="/tutorial/{{ item.version }}/{{ page.link }}/" title="Minecraft {{ item.version }}">{{ item.version }}</a>
-            {% endif %}
-          {% endfor %}
-      </div>
+<div id="tutorial-content">
+  <div id="title">
+    <h1>{{ page.title }}</h1>
+    <div class="version-dropdown">
+        <button class="version-dropdown-button">{{ page.mcversion }}</button>
+        <div class="version-dropdown-content">
+            {% for item in site.data.versioning %}
+              {% if item.version != page.mcversion %}
+                <a href="/tutorial/{{ item.version }}/{{ page.link }}/" title="Minecraft {{ item.version }}">{{ item.version }}</a>
+              {% endif %}
+            {% endfor %}
+        </div>
+    </div>
   </div>
+  <div class="date">Last updated: {{ page.date | date_to_long_string: "ordinal" }}</div>
+  {{ content | markdownify }}
 </div>
-<div>Last updated: {{ page.date | date_to_long_string: "ordinal" }}</div>
-
-<p>
-  {% assign tutorial = site.tutorials | first %}
-  {% if tutorial %}
-    - <a href="{{ tutorial.link }}">{{ tutorial.name }}</a>
-  {% endif %}
-</p>
-
-{{ content | markdownify }}
-
-<!-- /div -->
 {% include html_footer.html %}

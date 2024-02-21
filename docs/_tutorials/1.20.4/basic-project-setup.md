@@ -40,33 +40,33 @@ pluginManagement {
 The ``gradle.properties`` contains the project specific settings. Every section of the file will be explained one after another from here on.
 
 ### org.gradle
-{% highlight gradle %}
+```gradle
 org.gradle.jvmargs=-Xmx1G
 org.gradle.parallel=true
-{% endhighlight %}
+```
 These two lines are directives to your Gradle. As you may already suspect it tells Gradle it is allowed to use up to one gigabyte of memory and is allowed to run tasks in parallel if possible. Be aware though. Increasing the memory usage does NOT result in a faster build process in almost all cases. As such unless there is a very good reason, keep the value as is. If you change it arbitrarily you will increase the memory usage while it will not use it, unnecessarily increasing the load on the developer's hardware.
 
 ### Fabric Properties
-{% highlight gradle %}
+```gradle
 minecraft_version=1.20.4
 yarn_mappings=1.20.4+build.3
 loader_version=0.15.7
-{% endhighlight %}
+```
 These are pretty straightforward ``minecraft_version`` is set to the Minecraft version you wish to mod for, in this case we are modding for ``1.20.4``.
 
 
 ### Mod Properties
-{% highlight gradle %}
+```gradle
 mod_version=1.0.0
 maven_group=com.mymod
 archives_base_name=mymod
-{% endhighlight %}
+```
 
 ### Dependencies
-{% highlight gradle %}
+```gradle
 fabric_version=0.96.1+1.20.4
 fabric_versiononly=0.96.1
-{% endhighlight %}
+```
 
 ## TODO
 

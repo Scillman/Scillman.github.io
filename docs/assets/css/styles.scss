@@ -12,7 +12,16 @@
 .lineno {
     min-width: 1.2em;
     text-align: right;
-    margin-right: 4px;
+    margin-right: 8px;
+    padding-right: 8px;
+}
+
+pre.highlight {
+    width: 100%;
+    display: block;
+    border: solid 2px #333;
+    padding: 8px;
+    margin: 8px 0;
 }
 
 code,
@@ -31,8 +40,8 @@ code {
 
 // .highlight {
 
-    pre { background-color: #272822 }
-    .lineno { color: white }
+    pre { background-color: #111 }
+    .lineno { color: #666 }
 
     .language-java {
         .hll { background-color: #272822; }
