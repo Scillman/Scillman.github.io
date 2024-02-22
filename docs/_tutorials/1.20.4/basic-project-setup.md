@@ -11,7 +11,7 @@ date: 20240220
 - Have basic knowledge of Java.
 
 ## Introduction
-In this tutorial we will go over setting up a basic project for modding in Fabric for Minecraft. This tutorial is optional, as an example mod can be downloaded [here](https://fabricmc.net/develop/template/), however it is adviced to follow to get a better understanding of the basics.
+In this tutorial we will go over setting up a basic project for modding in Fabric for Minecraft. This tutorial is optional, as an example mod can be downloaded [here](https://fabricmc.net/develop/template/), however it is adviced to follow the tutorial to get a better understanding of the basics.
 
 During this tutorial we will set up a basic project that does absolutely nothing but compile. To achieve this we will need the create the following files:
 * ``build.gradle``

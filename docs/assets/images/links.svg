@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+    <path stroke="#ccc" stroke-width="4" fill="none"
+        d="
+            M 24 8
+            L 56 8
+            L 56 40
+            M 56 8
+            L 8 56
+        " />
+</svg>

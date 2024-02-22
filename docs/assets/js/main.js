@@ -34,3 +34,7 @@ function onCopyClick(event) {
         event.srcElement.textContent = 'COPY';
     }, 1500);
 }
+
+function clickedLinkBlock(sender) {
+    document.location = sender.dataset.href;
+}
