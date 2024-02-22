@@ -16,7 +16,11 @@
             <li class="tutorial-level">{{ itemGroup.group }}
                 <ul>
                     {% for item in itemGroup.content %}
+                    {% if item.link != page.link %}
                     <li class="tutorial-chapter"><a href="/tutorial/{{ mcversion }}/{{ item.link }}/">{{ item.name }}</a></li>
+                    {% else %}
+                    <li class="tutorial-chapter"><a class="current">{{ item.name }}</a></li>
+                    {% endif %}
                     {% endfor %}
                 </ul>
             </li>

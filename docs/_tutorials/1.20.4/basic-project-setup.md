@@ -68,6 +68,8 @@ fabric_version=0.96.1+1.20.4
 fabric_versiononly=0.96.1
 ```
 
+![][image_ref_abc]
+
 ## TODO
 
 ``net.fabricmc.api.ModInitializer``
@@ -85,3 +87,5 @@ public class ModMain extends ModInitializer {
     }
 }
 ```
+
+[image_ref_abc]:  data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAAdElEQVQoz5VSwQ3AIAg8DQvoWP2zgp2pDtKxdIU+SBNipYH7iXfcEUitNURAAK7et3+1lKXCzBlBkO405pTnPIbBPzcONvt1sFDuis8QOcAGAJgCK9hfpEUjntkfRvTkGUBbuRan9S6BdqDo4gK3JMFS9LwfSg8g+7AvCPAAAAAASUVORK5CYII=

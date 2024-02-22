@@ -68,13 +68,23 @@
             }
         }
 
-        a {
+        a:not(.current) {
             color: #aaa;
             text-decoration: none;
 
             &:hover {
                 color: #ccc;
                 font-weight: 700;
+            }
+        }
+
+        a.current {
+            color: #d38533;
+            font-weight: 400;
+
+            &:hover {
+                font-weight: 700;
+                cursor: pointer;
             }
         }
     }
