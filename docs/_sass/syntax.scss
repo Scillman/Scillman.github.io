@@ -1,6 +1,13 @@
 $default: #BBB; //#b900b0;
 $light_orange: #CE9178;
 $light_cyan: #3BA1FB;
+$dark_cyan: rgb(0, 163, 163);
+$green: rgb(33, 133, 0);
+$purple: #800080;
+$gray: #808080;
+
+pre { background-color: #111 }
+.lineno { color: #666 }
 
 .language-gradle {
     .s1 { color: $light_orange; }
@@ -13,4 +20,19 @@ $light_cyan: #3BA1FB;
     .py { color: $light_cyan; }
     .p { color: $default; }
     .s { color: $light_orange; }
+}
+
+.language-java {
+    .nd { color: $light_cyan; }
+    .kd { color: $light_cyan; }
+    .kn { color: $light_cyan; }
+    .kt { color: $light_cyan; }
+    .nf { color: $default; }
+    .nc { color: $dark_cyan; }
+    .o { color: $default; }
+    .nn { color: $default; }
+    .na { color: $default; }
+    .nd { color: $gray; }
+    .c1 { color: $green; }
+    .n { color: $default; }
 }

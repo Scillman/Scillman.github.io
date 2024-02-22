@@ -72,18 +72,25 @@ fabric_versiononly=0.96.1
 
 ## TODO
 
-``net.fabricmc.api.ModInitializer``
+``net.fabricmc.api.ModInitializer`` ``onInitialize``
+
+``net.fabricmc.api.ClientModInitializer`` ``onInitializeClient``
+
+``net.fabricmc.api.DedicatedServerModInitializer`` ``onInitializeServer``
 
 ```java
 package com.github.scillman.minecraft.tutorial;
 
 import net.fabricmc.api.ModInitializer;
+import net.minecraft.client.MinecraftClient;
 
-public class ModMain extends ModInitializer {
+public class ModMain implements ModInitializer {
 
     @Override
     public void onInitialize() {
         // Your code comes here...
+        MinecraftClient client = MinecraftClient.getInstance();
+        @Nullable PlayerEntity player = client.player;
     }
 }
 ```
