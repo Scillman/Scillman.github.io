@@ -79,19 +79,334 @@ fabric_versiononly=0.96.1
 ``net.fabricmc.api.DedicatedServerModInitializer`` ``onInitializeServer``
 
 ```java
-package com.github.scillman.minecraft.tutorial;
+package com.github.scillman.minecraft.tutorial.recipe;
 
-import net.fabricmc.api.ModInitializer;
-import net.minecraft.client.MinecraftClient;
+import java.util.Optional;
 
-public class ModMain implements ModInitializer {
+import org.spongepowered.include.com.google.gson.JsonParseException;
+import org.spongepowered.include.com.google.gson.JsonSyntaxException;
 
+import com.google.gson.JsonObject;
+
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.network.PacketByteBuf;
+import net.minecraft.recipe.Ingredient;
+import net.minecraft.recipe.RecipeSerializer;
+import net.minecraft.recipe.ShapedRecipe;
+import net.minecraft.tag.TagKey;
+import net.minecraft.util.Identifier;
+import net.minecraft.util.JsonHelper;
+import net.minecraft.util.registry.Registry;
+
+public class CoffeeRecipeSerializer implements RecipeSerializer<CoffeeRecipe>
+{
+    /**
+     * Constructs a {@link com.github.scillman.minecraft.tutorial.recipe.CoffeeRecipeSerializer CoffeeRecipeSerializer} from a Json object.
+     * @param id The identifier to associate with the serializer.
+     * @param json The Json object to read from.
+     * @return An instance of the CoffeeRecipe object with the values set to the read data.
+     * @throws JsonSyntaxException When incorrect Json data has been read.
+     */
     @Override
-    public void onInitialize() {
-        // Your code comes here...
-        MinecraftClient client = MinecraftClient.getInstance();
-        @Nullable PlayerEntity player = client.player;
+    public CoffeeRecipe read(Identifier id, JsonObject json) throws JsonSyntaxException
+    {
+        Ingredient inCoffee         = CoffeeRecipeSerializer.fromJson(json, "coffee");
+        Ingredient inCoffeeCup      = CoffeeRecipeSerializer.fromJson(json, "cup");
+        Ingredient inCoffeeFilter   = CoffeeRecipeSerializer.fromJson(json, "filter");
+        Ingredient inFuel           = CoffeeRecipeSerializer.fromJson(json, "fuel");
+        Ingredient inWater          = CoffeeRecipeSerializer.fromJson(json, "water");
+
+        Optional<Ingredient> additive1 = Optional.empty();
+        if (json.has("additive1")) {
+            additive1 = Optional.of(CoffeeRecipeSerializer.fromJson(json, "additive1"));
+        }
+
+        Optional<Ingredient> additive2 = Optional.empty();
+        if (json.has("additive2")) {
+            additive2 = Optional.of(CoffeeRecipeSerializer.fromJson(json, "additive2"));
+        }
+
+        ItemStack output = ShapedRecipe.outputFromJson(json);
+
+        float experience = JsonHelper.getFloat(json, "experience", 0.0f);
+        int brewTime = JsonHelper.getInt(json, "brewtime", 100);
+
+        return new CoffeeRecipe(id, inCoffee, inCoffeeCup, inCoffeeFilter,
+            inFuel, inWater, additive1, additive2, output, experience, brewTime);
     }
+
+    /**
+     * Creates an {@link net.minecraft.recipe.Ingredient Ingredient} from Json input.
+     * @param json The Json object to read the contents from.
+     * @param jsonKey The key of the ingredient inside the json.
+     * @return An instance of the Ingredient class constructed with the read data.
+     * @throws JsonSyntaxException When incorrect Json data has been read.
+     */
+    private static Ingredient fromJson(JsonObject json, String jsonKey) throws JsonSyntaxException
+    {
+        if (!json.has(jsonKey)) {
+            throw new JsonParseException("Missing coffee recipe ingredient for: '" + jsonKey + "'");
+        }
+
+        String key = JsonHelper.getString(json, jsonKey);
+        Identifier id = new Identifier(key);
+
+        Item item = Registry.ITEM.getOrEmpty(id).orElseThrow(() -> new JsonSyntaxException("Unknown item '" + key + "' in coffee recipe"));
+        if (item == Items.AIR) {
+            throw new JsonSyntaxException("Invalid item: '" + key + "' in coffee recipe");
+        }
+
+        TagKey<Item> tagKey = TagKey.of(Registry.ITEM_KEY, id);
+        return Ingredient.fromTag(tagKey);
+    }
+
+    /**
+     * Creates a {@link com.github.scillman.minecraft.tutorial.recipe.CoffeeRecipe CoffeeRecipe} from binary data.
+     * @param id The identifier.
+     * @param buffer The buffer containing the binary data.
+     * @return An instance of the CoffeeRecipe class with the values set to the read data.
+     */
+    @Override
+    public CoffeeRecipe read(Identifier id, PacketByteBuf buffer)
+    {
+        int numAdditives;
+        Ingredient inCoffee;
+        Ingredient inCoffeeCup;
+        Ingredient inCoffeeFilter;
+        Ingredient inFuel;
+        Ingredient inWater;
+        Optional<Ingredient> inAdditive1 = Optional.empty();
+        Optional<Ingredient> inAdditive2 = Optional.empty();
+        ItemStack outCupOfCoffee;
+        float experience;
+        int brewTime;
+
+        numAdditives = buffer.readVarInt();
+        numAdditives = ((numAdditives < 0) ? 0 : ((numAdditives > 2) ? 2 : numAdditives));
+
+        inCoffee = Ingredient.fromPacket(buffer);
+        inCoffeeCup = Ingredient.fromPacket(buffer);
+        inCoffeeFilter = Ingredient.fromPacket(buffer);
+        inFuel = Ingredient.fromPacket(buffer);
+        inWater = Ingredient.fromPacket(buffer);
+
+        if (numAdditives >= 1) {
+            inAdditive1 = Optional.of(Ingredient.fromPacket(buffer));
+        }
+
+        if (numAdditives >= 2) {
+            inAdditive2 = Optional.of(Ingredient.fromPacket(buffer));
+        }
+
+        outCupOfCoffee = buffer.readItemStack();
+        experience = buffer.readFloat();
+        brewTime = buffer.readInt();
+
+        return new CoffeeRecipe(id, inCoffee, inCoffeeCup, inCoffeeFilter, inFuel,
+            inWater, inAdditive1, inAdditive2, outCupOfCoffee, experience, brewTime);
+    }
+
+    /**
+     * Creates a {@link net.minecraft.network.PacketByteBuf PacketByteBuf} from the
+     * {@link com.github.scillman.minecraft.tutorial.recipe.CoffeeRecipe CoffeeRecipe} instance.
+     * @param buffer The buffer to write the CoffeeRecipe data into.
+     * @param recipe The recipe to convert to binary data.
+     */
+    @Override
+    public void write(PacketByteBuf buffer, CoffeeRecipe recipe)
+    {
+        int numAdditives = 0;
+        if (recipe.inAdditive1.isPresent()) ++numAdditives;
+        if (recipe.inAdditive2.isPresent()) ++numAdditives;
+
+        buffer.writeVarInt(numAdditives);
+        recipe.inCoffee.write(buffer);
+        recipe.inCoffeeCup.write(buffer);
+        recipe.inCoffeeFilter.write(buffer);
+        recipe.inFuel.write(buffer);
+        recipe.inWater.write(buffer);
+
+        if (recipe.inAdditive1.isPresent()) {
+            recipe.inAdditive1.get().write(buffer);
+        }
+
+        if (recipe.inAdditive2.isPresent()) {
+            recipe.inAdditive2.get().write(buffer);
+        }
+
+        buffer.writeItemStack(recipe.outCupOfCoffee);
+        buffer.writeFloat(recipe.experience);
+        buffer.writeInt(recipe.brewTime);
+    }
+}
+```
+
+```json
+{
+    "parent": "block/block",
+    "textures": {
+        "particle": "block/sea_pickle",
+        "all": "block/sea_pickle"
+    },
+    "elements": [
+        {   "from": [ 2, 0, 2 ],
+            "to": [ 6, 6, 6 ],
+            "faces": {
+                "down":  { "uv": [  8, 1,  12, 5 ], "texture": "#all", "cullface": "down" },
+                "up":    { "uv": [  4, 1,  8, 5 ], "texture": "#all" },
+                "north": { "uv": [ 4, 5, 8, 11 ], "texture": "#all" },
+                "south": { "uv": [ 0, 5, 4, 11 ], "texture": "#all" },
+                "west":  { "uv": [ 8, 5, 12, 11 ], "texture": "#all" },
+                "east":  { "uv": [ 12, 5, 16, 11 ], "texture": "#all" }
+            }
+        },
+        {
+            "from": [ 2, 5.95, 2 ],
+            "to": [ 6, 5.95, 6 ],
+            "faces": {
+                "up": {"uv": [  8, 1,  12, 5 ], "texture": "#all"}
+            }
+        },
+        {
+            "from": [ 9, 0, 10 ],
+            "to": [ 13, 4, 14 ],
+            "faces": {
+                "down":  { "uv": [  8, 1,  12, 5 ], "texture": "#all", "cullface": "down" },
+                "up":    { "uv": [  4, 1,  8, 5 ], "texture": "#all" },
+                "north": { "uv": [ 4, 5, 8, 9 ], "texture": "#all" },
+                "south": { "uv": [ 0, 5, 4, 9 ], "texture": "#all" },
+                "west":  { "uv": [ 8, 5, 12, 9 ], "texture": "#all" },
+                "east":  { "uv": [ 12, 5, 16, 9 ], "texture": "#all" }
+            }
+        },
+        {
+            "from": [ 9, 3.95, 10 ],
+            "to": [ 13, 3.95, 14 ],
+            "faces": {
+                "up": {"uv": [  8, 1,  12, 5 ], "texture": "#all"}
+            }
+        },
+        {
+            "from": [ 9, 0, 2 ],
+            "to": [ 13, 6, 6 ],
+            "faces": {
+                "down":  { "uv": [  8, 1,  12, 5 ], "texture": "#all", "cullface": "down" },
+                "up":    { "uv": [  4, 1,  8, 5 ], "texture": "#all" },
+                "north": { "uv": [ 4, 5, 8, 11 ], "texture": "#all" },
+                "south": { "uv": [ 0, 5, 4, 11 ], "texture": "#all" },
+                "west":  { "uv": [ 8, 5, 12, 11 ], "texture": "#all" },
+                "east":  { "uv": [ 12, 5, 16, 11 ], "texture": "#all" }
+            }
+        },
+        {
+            "from": [ 9, 5.95, 2 ],
+            "to": [ 13, 5.95, 6 ],
+            "faces": {
+                "up": {"uv": [  8, 1,  12, 5 ], "texture": "#all"}
+            }
+        },
+        {
+            "from": [ 2, 0, 8 ],
+            "to": [ 6, 7, 12 ],
+            "faces": {
+                "down":  { "uv": [  8, 1,  12, 5 ], "texture": "#all", "cullface": "down" },
+                "up":    { "uv": [  4, 1,  8, 5 ], "texture": "#all" },
+                "north": { "uv": [ 4, 5, 8, 12 ], "texture": "#all" },
+                "south": { "uv": [ 0, 5, 4, 12 ], "texture": "#all" },
+                "west":  { "uv": [ 8, 5, 12, 12 ], "texture": "#all" },
+                "east":  { "uv": [ 12, 5, 16, 12 ], "texture": "#all" }
+            }
+        },
+        {
+            "from": [ 2, 6.95, 8 ],
+            "to": [ 6, 6.95, 12 ],
+            "faces": {
+                "up": {"uv": [  8, 1,  12, 5 ], "texture": "#all"}
+            }
+        },
+        {
+            "from": [ 3.5, 5.2, 4 ],
+            "to": [ 4.5, 8.7, 4 ],
+            "rotation": { "origin": [ 4, 8, 4 ], "axis": "y", "angle": 45, "rescale": true },
+            "shade": false,
+            "faces": {
+                "north": { "uv": [ 1, 0, 3, 5 ], "texture": "#all" },
+                "south": { "uv": [ 3, 0, 1, 5 ], "texture": "#all" }
+            }
+        },
+        {
+            "from": [ 4, 5.2, 3.5 ],
+            "to": [ 4, 8.7, 4.5 ],
+            "rotation": { "origin": [ 4, 8, 4 ], "axis": "y", "angle": 45, "rescale": true },
+            "shade": false,
+            "faces": {
+                "west": { "uv": [ 13, 0, 15, 5 ], "texture": "#all" },
+                "east": { "uv": [ 15, 0, 13, 5 ], "texture": "#all" }
+            }
+        },
+        {
+            "from": [ 10.5, 3.2, 12 ],
+            "to": [ 11.5, 6.7, 12 ],
+            "rotation": { "origin": [ 11, 8, 12 ], "axis": "y", "angle": 45, "rescale": true },
+            "shade": false,
+            "faces": {
+                "north": { "uv": [ 1, 0, 3, 5 ], "texture": "#all" },
+                "south": { "uv": [ 3, 0, 1, 5 ], "texture": "#all" }
+            }
+        },
+        {
+            "from": [ 11, 3.2, 11.5 ],
+            "to": [ 11, 6.7, 12.5 ],
+            "rotation": { "origin": [ 11, 8, 12 ], "axis": "y", "angle": 45, "rescale": true },
+            "shade": false,
+            "faces": {
+                "west": { "uv": [ 13, 0, 15, 5 ], "texture": "#all" },
+                "east": { "uv": [ 15, 0, 13, 5 ], "texture": "#all" }
+            }
+        },
+        {
+            "from": [ 10.5, 5.2, 4 ],
+            "to": [ 11.5, 8.7, 4 ],
+            "rotation": { "origin": [ 11, 8, 4 ], "axis": "y", "angle": 45, "rescale": true },
+            "shade": false,
+            "faces": {
+                "north": { "uv": [ 1, 0, 3, 5 ], "texture": "#all" },
+                "south": { "uv": [ 3, 0, 1, 5 ], "texture": "#all" }
+            }
+        },
+        {
+            "from": [ 11, 5.2, 3.5 ],
+            "to": [ 11, 8.7, 4.5 ],
+            "rotation": { "origin": [ 11, 8, 4 ], "axis": "y", "angle": 45, "rescale": true },
+            "shade": false,
+            "faces": {
+                "west": { "uv": [ 13, 0, 15, 5 ], "texture": "#all" },
+                "east": { "uv": [ 15, 0, 13, 5 ], "texture": "#all" }
+            }
+        },
+        {
+            "from": [ 3.5, 6.2, 10 ],
+            "to": [ 4.5, 9.7, 10 ],
+            "rotation": { "origin": [ 4, 8, 10 ], "axis": "y", "angle": 45, "rescale": true },
+            "shade": false,
+            "faces": {
+                "north": { "uv": [ 1, 0, 3, 5 ], "texture": "#all" },
+                "south": { "uv": [ 3, 0, 1, 5 ], "texture": "#all" }
+            }
+        },
+        {
+            "from": [ 4, 6.2, 9.5 ],
+            "to": [ 4, 9.7, 10.5 ],
+            "rotation": { "origin": [ 4, 8, 10 ], "axis": "y", "angle": 45, "rescale": true },
+            "shade": false,
+            "faces": {
+                "west": { "uv": [ 13, 0, 15, 5 ], "texture": "#all" },
+                "east": { "uv": [ 15, 0, 13, 5 ], "texture": "#all" }
+            }
+        }
+    ]
 }
 ```
 

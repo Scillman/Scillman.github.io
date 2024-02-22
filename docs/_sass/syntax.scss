@@ -1,10 +1,14 @@
-$default: #BBB; //#b900b0;
+$default: #BBB;
 $light_orange: #CE9178;
 $light_cyan: #3BA1FB;
-$dark_cyan: rgb(0, 163, 163);
-$green: rgb(33, 133, 0);
-$purple: #800080;
+$dark_cyan: #00A3A3;
+$green: #218500;
+$light_green: #A0D090;
+$purple: #c600c6;
 $gray: #808080;
+$blue: #8000FF;
+$dark_gold: #ccad00;
+$deep_cyan: #06adff;
 
 pre { background-color: #111 }
 .lineno { color: #666 }
@@ -27,12 +31,27 @@ pre { background-color: #111 }
     .kd { color: $light_cyan; }
     .kn { color: $light_cyan; }
     .kt { color: $light_cyan; }
-    .nf { color: $default; }
+    .nf { color: $light_green; }
+    .na { color: $deep_cyan;}
     .nc { color: $dark_cyan; }
-    .o { color: $default; }
+    .o { color: $gray; }
     .nn { color: $default; }
-    .na { color: $default; }
     .nd { color: $gray; }
     .c1 { color: $green; }
+    .cm { color: $green; }
     .n { color: $default; }
+    .s { color: $light_orange; }
+    .mi { color: $light_cyan; }
+    .mf { color: $light_cyan; }
+    .kc { color: $light_cyan; }
+    .k { color: $purple; }
+}
+
+.language-json {
+    .nl { color: $light_cyan; }
+    .s2 { color: $light_orange; }
+    .mi { color: $light_green; }
+    .mf { color: $light_green; }
+    .kc { color: $light_green; }
+    .p { color: $gray; }
 }
