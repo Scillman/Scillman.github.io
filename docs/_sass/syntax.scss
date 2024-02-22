@@ -1,0 +1,16 @@
+$default: #BBB; //#b900b0;
+$light_orange: #CE9178;
+$light_cyan: #3BA1FB;
+
+.language-gradle {
+    .s1 { color: $light_orange; }
+    .k { color: $light_cyan; }
+    .o { color: $default; }
+    .n { color: $default; }
+}
+
+.language-properties {
+    .py { color: $light_cyan; }
+    .p { color: $default; }
+    .s { color: $light_orange; }
+}
