@@ -18,3 +18,9 @@
   content:
   - name: Adding a block
     link: adding-a-block
+- group: GUI
+  content:
+  - name: Adding a Screen
+    link: adding-a-screen
+  - name: Adding a ScreenHandler
+    link: adding-a-screenhandler

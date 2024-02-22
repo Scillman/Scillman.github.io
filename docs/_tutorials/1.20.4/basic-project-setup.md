@@ -7,7 +7,7 @@ link: basic-project-setup
 date: 20240220
 ---
 ## Prerequisites
-- This tutorial assumes you have a fully functional development environment, including Gradle and Git.
+- This tutorial assumes you have a fully functional development environment, including Java, Gradle and Git.
 - Have basic knowledge of Java.
 
 ## Introduction

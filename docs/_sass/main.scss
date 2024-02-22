@@ -33,3 +33,26 @@ code.language-plaintext {
     background-color: #151515;
     color: #d38533;
 }
+
+pre.highlight {
+    position: relative;
+}
+
+.copy-button {
+    outline: none;
+    display: block;
+    padding: .2em .5em;
+    position: absolute;
+    top: 0;
+    right: 0;
+    border: 1px solid #666;
+    background-color: #111;
+    color: #ccc;
+    margin: 8px 8px 0 0;
+
+    &:hover {
+        background-color: #333;
+        color: #fff;
+        cursor: pointer;
+    }
+}
