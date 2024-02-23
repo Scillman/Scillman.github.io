@@ -54,6 +54,14 @@ loader_version=0.15.7
 ```
 These are pretty straightforward ``minecraft_version`` is set to the Minecraft version you wish to mod for, in this case we are modding for ``1.20.4``.
 
+The ``yarn_mappings`` tell us we want to use the custom mappings for our mod and not the _mojang_ mappings. __This tutorial series assumes you are using the yarn mappings__. As for the version it will be the same as the Minecraft version, ``1.20.4``, and the build should always be the latest stable build available. For version 1.20.4 this is ``build.3``. These two together than form the notation of ``1.20.4+build.3`` as seen above.
+
+The ``loader_version`` tells which loader the mod is build for. It is best to target the latest build, as of writing this is ``0.15.7``. However this is not always possible for older versions of Minecraft and quickly becomes rather cumbersome. In these cases there are basically two options:
+
+1. match the version with the version the server/client uses;
+2. target the oldest loader version for the Minecraft version you are targeting.
+
+The best way to go about this is to look at the release date of the Minecraft version and the loader version and make sure they match. Loader versions are generally released rather quickly after a new Minecraft release. (e.g. most will be within a timespan of 24 hours.)
 
 ### Mod Properties
 ```properties
@@ -61,14 +69,101 @@ mod_version=1.0.0
 maven_group=com.mymod
 archives_base_name=mymod
 ```
+The mod properties are pretty straightforward. The ``mod_version`` can be set by yourself, it is best to keep the format of ``x.y.z`` with a possible extra of Minecraft, Fabric API or loader versions. As an example: ``1.0.0-0.96.3+1.20.4`` is also a pretty good option. Indicating a mod version of ``1.0.0``, API version of ``0.96.3`` and Minecraft version of ``1.20.4``.
+
+The value of ``maven_group`` should be identical to your package. This is what is on the top of the ``ModMain`` class. For example ``package com.github.scillman.minecraft.tutorial;`` would be ``com.github.scillman.minecraft.tutorial``.
+
+The ``archive_base_name`` should obviously match the _base_ of your package contents. In the example given previously that would be ``tutorial``.
 
 ### Dependencies
 ```properties
-fabric_version=0.96.1+1.20.4
-fabric_versiononly=0.96.1
+fabric_version=0.96.3+1.20.4
+fabric_versiononly=0.96.3
 ```
+The ``fabric_version`` indicates the version of the Fabric API the mod will be using. It is best to keep this to the latest possible version for the targeted Minecraft version. You can easily find the latest stable version by searching on [ModRinth](https://modrinth.com/mod/fabric-api/versions?c=release&g=1.20.4).
 
-![][image_ref_abc]
+The ``fabric_versiononly`` should match the Fabric API version given in ``fabric_version``.
+
+### Properties Conclusion
+What has been mentioned above is everything that will go into the ``gradle.properties`` file. In the future if you wish to add more dependencies to your project you can easily extend the file to add their respective versions. Using the properties file allows you to easily switch versions without having to edit all the individual files.
+
+## build.gradle
+TODO:
+
+## \*.mod.json
+```json
+{
+    "schemaVersion": 1,
+    "id": "mymod",
+    "version": "${version}",
+    "name": "MyMod",
+    "description": "This is an example description! Tell everyone what your mod is about!",
+    "authors": [
+        "Me!"
+    ],
+    "contact": {
+        "homepage": "https://github.com/Scillman/",
+        "sources": "https://github.com/Scillman/",
+        "issues": "https://github.com/Scillman/"
+    },
+    "license": "CC0-1.0",
+    "icon": "assets/mymod/icon.png",
+    "environment": "*",
+    "entrypoints": {
+        "main": [
+            "com.mymod.ModMain"
+        ]
+    },
+    "depends": {
+        "fabricloader": ">=${loader_version}",
+        "minecraft": "~${minecraft_version}",
+        "java": ">=17",
+        "fabric-api": ">=${fabric_versiononly}"
+    }
+}
+```
+The ``mymod.mod.json`` contains all the information the Fabric loader needs to load your mod.
+Apart from those it also contains some optional information, like the ``description``, ``authors``,
+``contact``, ``icon`` and ``license``.
+
+The ``contact`` field almost always contains a ``homepage`` to either your own website or
+the website where you can download the mod (e.g. ModRinth.) The ``sources`` and ``issues``
+are there for open-source projects. This allows others to take a look at the source code
+as well as make reports when issues start occuring. (e.g. bugs are found.)
+
+The ``license`` field indicates the license your mod falls under. If you do not know which
+license to choose you can look at [choosealicense.com](https://choosealicense.com/) to get
+some help.
+
+Now what is left are the required fields. To start of with is the ``environment`` field.
+This has three possible options: ``client``, ``server`` or ``*``. The _client_ is to be
+set if the mod is client-side only, the _server_ if the mod is server-side only, and
+finally the asterisk when it has code for both.
+
+The ``entrypoints`` contains the entry points for different environments. Common occurences
+are ``main`` for mixed code, ``client`` for client-side code, ``server`` for server-side
+code and ``datagen`` for compile-time data generation. (Do note the _datagen_ name can be
+customized and may slightly differ.)
+
+After that is the ``depends``, which is short for dependencies. This holds all the required
+depedencies to run your mod. The versions are optional in the sense that you could put a
+``*`` and have it accept all versions. However it is better to set the versions appropriately
+unless you wish to test it against all the different versions. The example contains the
+``fabricloader``, ``minecraft``, ``java`` and ``fabric-api`` as these will be required.
+
+Lastly we have the ``id`` and ``name`` fields. The ``id`` should be a generally unique id
+that can be used to differentiate your mod from others. It is recommended to keep this
+value identical to package base name. (e.g. ``tutorial`` in the example given previously.)
+The ``name`` is the human-readable name of your mod. Where the _id_ is contrained in what
+it is composed of, the name of the mod is not.
+
+As a special note are the ``${your_variable}`` notations. During the building of your mod
+these values will be replaced by the values set in the ``gradle.properties`` file. This
+makes it so that the versions your mod requires will follow what is used during build
+and/or set by the creator of the mod.
+
+
+![Logo][image_ref_abc]
 
 ## TODO
 
